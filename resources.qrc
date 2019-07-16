@@ -1,0 +1,37 @@
+<RCC>
+    <qresource prefix="/car_images">
+        <file>ferrari.png</file>
+        <file>mercedes.png</file>
+        <file>redbull.png</file>
+    </qresource>
+    <qresource prefix="/window_images">
+        <file>background.png</file>
+        <file>ferrari_forWind.png</file>
+        <file>mercedes_forWind.png</file>
+        <file>redbull_forWind.png</file>
+        <file>game_over.jpg</file>
+    </qresource>
+    <qresource prefix="/map_images">
+        <file>map2.png</file>
+        <file>tree.png</file>
+        <file>Pavilion_01.png</file>
+        <file>Rock_01.png</file>
+        <file>Rock_02.png</file>
+        <file>Tree_01.png</file>
+        <file>Tree_02.png</file>
+        <file>grandstand.png</file>
+        <file>grandstandYARIM.png</file>
+        <file>Water_Tile.png</file>
+        <file>Pavilion_02.png</file>
+        <file>map_3.png</file>
+        <file>Soil_Tile.png</file>
+        <file>izi.png</file>
+    </qresource>
+    <qresource prefix="/soundEffects">
+        <file>carSound.mp3</file>
+        <file>themeSong.mp3</file>
+    </qresource>
+    <qresource prefix="/videoEffects">
+        <file>Countdown_3-2.mp4</file>
+    </qresource>
+</RCC>
