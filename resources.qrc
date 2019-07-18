@@ -26,6 +26,7 @@
         <file>map_3.png</file>
         <file>Soil_Tile.png</file>
         <file>izi.png</file>
+        <file>map2sunum.png</file>
     </qresource>
     <qresource prefix="/soundEffects">
         <file>carSound.mp3</file>

@@ -9,8 +9,6 @@
 
 map::map(int selectedCar, int selectedMap)
 {
-    //create the health
-
     if(selectedMap==0)
         map1(selectedCar);
 
@@ -19,13 +17,16 @@ map::map(int selectedCar, int selectedMap)
 
     else if (selectedMap==2)
         map3(selectedCar);
+
+    //QObject::connect(myCar, SIGNAL(carIsDead()), this, SLOT(map::carHasDied()));
 }
 void map::map1(int selectedCar)
 {
- lives=new Health();
-  if(lives->getHealth()>0)
-  {
+ health=new Health();
 
+//if its still alive
+  if(health->getHealth()>0)
+  {
     scene=new QGraphicsScene();
     scene->setSceneRect(0,0,800,600);
     setScene(scene);
@@ -35,7 +36,7 @@ void map::map1(int selectedCar)
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setFixedSize(800,600);
 
-    road_1 = new road(1,560,100,-10);
+    road_1 = new road(1,560,100,-10);  //roadun bölündügü dikdörtgenlerin koordinatları
     road_2 = new road(101,107,234,-10);
     road_3 = new road(234,287,342,-10);
     road_4 = new road(350,287,502,185);
@@ -124,64 +125,58 @@ void map::map1(int selectedCar)
     //show();
 
     //creating the car
-    myCar=new car(0,roadArray, decorArray);
-    if(selectedCar == 0){
+    myCar=new car(0 ,roadArray, decorArray);
+    myCar->health = health;
+
+    if(selectedCar == 0)
+    {
         QPixmap pixmap = QPixmap(":/car_images/ferrari.png");
         myCar->setPixmap(pixmap);
         myCar->setTransformOriginPoint(pixmap.width()/2,pixmap.height()/2);
-        }
-    if(selectedCar == 1){
+    }
+    if(selectedCar == 1)
+    {
         QPixmap pixbok = QPixmap(":/car_images/mercedes.png");
         myCar->setPixmap(pixbok);
         myCar->setTransformOriginPoint(pixbok.width()/2,pixbok.height()/2);
-        }
-    if(selectedCar == 2){
+    }
+    if(selectedCar == 2)
+    {
         QPixmap pixbok = QPixmap(":/car_images/redbull.png");
         myCar->setPixmap(pixbok);
         myCar->setTransformOriginPoint(pixbok.width()/2,pixbok.height()/2);
-        }
+    }
 
     myCar->setPos(49,324);
     myCar->setFlag(QGraphicsItem::ItemIsFocusable);
     myCar->setFocus();
     scene->addItem(myCar);
 
-    //lives = new Health();
-    lives = new Health();
-    lives->setPos(700,14);
-    scene->addItem(lives);
+    //set the position of lives:.. and add it to scene
+    health->setPos(700,14);
+    scene->addItem(health);
+
+    //play car sound
     QMediaPlayer* carSound=new QMediaPlayer();
     carSound->setMedia(QUrl("qrc:/soundEffects/carSound.mp3"));
     carSound->play();
 
-   // if(lives->getHealth()>0)
-   // {
-
-        show();
+    show();
  }
 
-    if(lives->getHealth()==0) //eger bu oluyosa boool u sil
-    {
-        //hide();
-        gameOver *gameOverScene=new gameOver();
-        gameOverScene->exec();
-    }
+  //if its not alive
 
-   // QMediaPlayer* carSound=new QMediaPlayer();
-   // carSound->setMedia(QUrl("qrc:/soundEffects/carSound.mp3"));
-   // carSound->play();
 }
 
 
 void map::map2(int selectedCar)
 {
-    lives=new Health();
-     if(lives->getHealth()>0)
-     {
-    //Example Change
+   health = new Health();
+
+    if(health->getHealth()>0)
+    {
+
     scene=new QGraphicsScene();
-    //backGround=new QGraphicsPixmapItem();
-    //backGround->setPixmap(QPixmap(":/images/map2.png"));
     scene->setSceneRect(0,0,800,600);
     setScene(scene);
     QGraphicsPixmapItem* backGround ;
@@ -237,55 +232,61 @@ void map::map2(int selectedCar)
            // show();
 
     //creating the car
-    myCar=new car(0,roadArray, decorArray);
-    if(selectedCar == 0){
+    myCar=new car(0, roadArray, decorArray);
+    myCar->health = health;
+
+    if(selectedCar == 0)
+    {
         QPixmap pixmap = QPixmap(":/car_images/ferrari.png");
         myCar->setPixmap(pixmap);
         myCar->setTransformOriginPoint(pixmap.width()/2,pixmap.height()/2);
-        }
-    if(selectedCar == 1){
+    }
+
+    if(selectedCar == 1)
+    {
         QPixmap pixbok = QPixmap(":/car_images/mercedes.png");
         myCar->setPixmap(pixbok);
         myCar->setTransformOriginPoint(pixbok.width()/2,pixbok.height()/2);
-        }
-    if(selectedCar == 2){
+    }
+
+    if(selectedCar == 2)
+    {
         QPixmap pixbok = QPixmap(":/car_images/redbull.png");
         myCar->setPixmap(pixbok);
         myCar->setTransformOriginPoint(pixbok.width()/2,pixbok.height()/2);
-        }
+    }
 
     myCar->setPos(29,394);
     myCar->setFlag(QGraphicsItem::ItemIsFocusable);
     myCar->setFocus();
     scene->addItem(myCar);
 
-    //lives = new Health();
-    lives->setPos(700,14);
-    scene->addItem(lives);
+    health->setPos(700,14);
+    scene->addItem(health);
+
     QMediaPlayer* carSound=new QMediaPlayer();
     carSound->setMedia(QUrl("qrc:/soundEffects/carSound.mp3"));
     carSound->play();
 
     show();
-     }
-     else
+    }
+    //if it died
+     if(health->getHealth()==0)
      {
+         //show game over screen
          gameOver *gameOverScene=new gameOver();
          gameOverScene->exec();
      }
-
-
 }
 
 void map::map3(int selectedCar)
 {
-    if(lives->getHealth()>0)
-    {
-    lives=new Health();
-    //Example Change
+  health=new Health();
+
+   if(health->getHealth()>0)
+   {
+
     scene=new QGraphicsScene();
-    //backGround=new QGraphicsPixmapItem();
-    //backGround->setPixmap(QPixmap(":/images/map2.png"));
     scene->setSceneRect(0,0,800,600);
     setScene(scene);
     QGraphicsPixmapItem* backGround;
@@ -318,57 +319,63 @@ void map::map3(int selectedCar)
     myTree=new decor(0,1);
     myTree->setPos(450,280);
     scene->addItem(myTree);
-   // show();
 
     //creating the car
     myCar=new car(0,roadArray,decorArray);
-    if(selectedCar == 0){
+    myCar->health = health;
+
+    if(selectedCar == 0)
+    {
         QPixmap pixmap = QPixmap(":/car_images/ferrari.png");
         myCar->setPixmap(pixmap);
         myCar->setTransformOriginPoint(pixmap.width()/2,pixmap.height()/2);
-        }
-    if(selectedCar == 1){
+    }
+    if(selectedCar == 1)
+    {
         QPixmap pixbok = QPixmap(":/car_images/mercedes.png");
         myCar->setPixmap(pixbok);
         myCar->setTransformOriginPoint(pixbok.width()/2,pixbok.height()/2);
-        }
-    if(selectedCar == 2){
+    }
+    if(selectedCar == 2)
+    {
         QPixmap pixbok = QPixmap(":/car_images/redbull.png");
         myCar->setPixmap(pixbok);
         myCar->setTransformOriginPoint(pixbok.width()/2,pixbok.height()/2);
-        }
+    }
 
     myCar->setPos(49,324);
     myCar->setFlag(QGraphicsItem::ItemIsFocusable);
     myCar->setFocus();
     scene->addItem(myCar);
 
-    //lives = new Health();
-    lives->setPos(700,14);
-    scene->addItem(lives);
+
+    health->setPos(700,14);
+    scene->addItem(health);
+   // qDebug()<<"health "<<health;
 
     QMediaPlayer* carSound=new QMediaPlayer();
     carSound->setMedia(QUrl("qrc:/soundEffects/carSound.mp3"));
     carSound->play();
 
-    //eger olmediyse oyun ekranini goster
-
-    //while(lives->isHealthy()==true)
-    //do
-    //    show();
-
-   // while(lives->isHealthy()==true);
-
-        show();
+    show();
     }
-    else
+
+    if(health->getHealth()==0)
     {
         //hide();
+
         gameOver *gameOverScene=new gameOver();
         gameOverScene->exec();
-
     }
-
-
 }
 
+void map::carHasDied()
+{
+    qDebug()<<"Has Died";
+    if(health->getHealth()==0)
+    {
+        //show game over scene
+        gameOver *gameOverScene=new gameOver();
+        gameOverScene->exec();
+    }
+}

@@ -31,8 +31,11 @@ class map: public QGraphicsView
             void map1(int selectedCar);
             void map2(int selectedCar);
             void map3(int selectedCar);
+            void carHasDied();
 
-         Health * lives;
+         Health * health;
+
+    public slots:
 };
 
 #endif // MAP_H

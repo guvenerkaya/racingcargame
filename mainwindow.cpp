@@ -4,9 +4,8 @@
 #include <QMainWindow>
 #include <QDebug>
 #include "map.h"
-#include <QMediaPlayer>
 
-QMediaPlayer* themeSound=new QMediaPlayer();
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QDialog(parent),
@@ -15,7 +14,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     ui->BackGroundLabel->setPixmap(QPixmap(":/window_images/background.png"));
 
-
+    themeSound=new QMediaPlayer();
     themeSound->setMedia(QUrl("qrc:/soundEffects/themeSong.mp3"));
     themeSound->play();
     show();
@@ -31,33 +30,30 @@ void MainWindow::on_select_car_clicked()
     SelectGameObjectDialog SelectionWindow(this, Car);
         if(SelectionWindow.exec())
         {
-            //qDebug()<<SelectionWindow.getSelected();
             this->selectedCar = SelectionWindow.getSelected();
-
-            // update map etc
         }
 
 }
 
-void MainWindow::on_select_map_clicked() //bunlari da degistir //boollari buraya yaz
+void MainWindow::on_select_map_clicked()
 {
     SelectGameObjectDialog SelectionWindow(this, Map);
         if(SelectionWindow.exec())
         {
             this->selectedMap = SelectionWindow.getSelected();
-            // update map etc
         }
 
 }
 
 void MainWindow::on_start_game_clicked() //TODO
 {
+    //hide the main window dialog
     hide();
+
+    // stop the playing music in the background
     themeSound->stop();
 
-    //secimlerin cemin map ve araba fonksiyonunu cagir
+    //open the map scene with these selections
     map *startGame;
     startGame=new map(this->selectedCar, this->selectedMap);
-    //startGame->show();
-
 }

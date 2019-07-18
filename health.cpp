@@ -1,40 +1,42 @@
 #include "health.h"
 #include <QFont>
 #include <QDebug>
+
 Health::Health(QGraphicsItem *parent): QGraphicsTextItem(parent)
 {
-    this-> health = 3;
+    //initialize health=3 at the beginning of the game
+    health = 3;
+
    // updateHealth();
-    setPlainText(QString("Lives: ") + QString::number(this->health)); //lives:..
+
+    //write "Lives:" current health ,on the screen
+    setPlainText(QString("Lives: ") + QString::number(health));
+
     qDebug()<<"olmasi gereken"<<this->health;
+
+    //set text color to red
     setDefaultTextColor(Qt::red);
+
+    //set textfont to times new roman and the size 25
     setFont(QFont("times",25));
 }
-void Health::decreaseLives()
+void Health::decreaseHealth()
 {
-    this->health--;
-    //qDebug()<<lives;
-   setPlainText(QString("Lives: ") + QString::number(this->health));
-   //setPos(0,0);
-   qDebug()<<"olmasi gereken"<<this->health;
-    //updateHealth();
+    //whenever this function is called(its called in car.cpp when a collision is detected) decrease lives
+    health--;
+    qDebug()<<"Health"<<health;
+
+    //update the label on the screen
+    setPlainText(QString("Lives: ") + QString::number(this->health));
 }
 int Health::getHealth()
 {
-    return this->health;
+    //return current health
+
+    return  health;
     qDebug()<<"lives= " <<this->health;
 }
-/*bool Health::isHealthy()
-{
-    if(this->health>0)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-}
+/*
 void Health::updateHealth()
 {
 

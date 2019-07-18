@@ -6,6 +6,8 @@
 #include <QTimer>
 #include "road.h"
 #include "health.h"
+#include "gameover.h"
+#include "gamewondialog.h"
 
 class car:public QObject,public QGraphicsPixmapItem
 {
@@ -13,8 +15,13 @@ class car:public QObject,public QGraphicsPixmapItem
     int l=0,r=0;
     QPixmap pixmap;
     QTimer * plotTimer;
-    Health *lives;
+    gameOver *gameOverDialog;
+    GameWonDialog *gameWon;
+    bool ch1passed = false, ch2passed = false, sppassed = false;
+    //int lastCheckPoint = 0;
 public:
+    Health *health;
+
     car(QGraphicsItem*parent =0, road roadArray[]=0, int decorArray[] = 0);
     void drawFerrari();
     void drawMercedes();
@@ -30,12 +37,24 @@ public:
     int decorArray[30];
     bool insideMap();
 
-
 private:
     int R,D,L,U;
+    void roundsCompleted();
+    int checkPoint1=0,checkPoint2=0,startPoint=0;
+    int checkPoint_1_Passed();
+    int startPointPassed();
+    int checkPoint_2_Passed();
+    bool between_1_2();
+    bool between_start_1();
+    bool between_2_start();
+
+
+
 public slots:
     void render();
 
+signals:
+    void carIsDead();
 };
 
 #endif // CAR_H

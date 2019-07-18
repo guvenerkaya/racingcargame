@@ -35,7 +35,8 @@ SOURCES += \
     decor.cpp \
     road.cpp \
     health.cpp \
-    gameover.cpp
+    gameover.cpp \
+    gamewondialog.cpp
 
 HEADERS += \
         car.h \
@@ -45,14 +46,16 @@ HEADERS += \
     decor.h \
     road.h \
     health.h \
-    gameover.h
+    gameover.h \
+    gamewondialog.h
 
 FORMS += \
         car.ui \
     mainwindow.ui \
     selectgameobjectdialog.ui \
     countdown.ui \
-    gameover.ui
+    gameover.ui \
+    gamewondialog.ui
 
 RESOURCES += \
     resources.qrc
