@@ -13,7 +13,6 @@ car::car(QGraphicsItem * parent,road roadArray[], int decorArray[]): QGraphicsPi
     plotTimer = new QTimer(this);
     connect(plotTimer, SIGNAL(timeout()),this, SLOT(render()));
     plotTimer->start(40);
-    //health=new Health();
 }
 
 void car::keyPressEvent(QKeyEvent *event)
@@ -37,7 +36,6 @@ void car::keyPressEvent(QKeyEvent *event)
             boostX = pos().x() + 50 * qCos(rotat);
             boostY = pos().y() + 50 * qSin(rotat);
             setPos(boostX,boostY);
-
         }
     }
 
@@ -54,7 +52,6 @@ void car::keyPressEvent(QKeyEvent *event)
             if(event->key() == Qt::Key_Right)
                 R = 0;
         }
-
     }
 
     void car::render()
@@ -62,13 +59,9 @@ void car::keyPressEvent(QKeyEvent *event)
         roundsCompleted();
         if(this->health->getHealth() <= 0)
         {
-            //emit carIsDead();
-
             gameOver *gameOverScene=new gameOver();
             gameOverScene->exec();
             disconnect(plotTimer, SIGNAL(timeout()),this, SLOT(render()));
-            // Oyunu kapat
-            // Ana ekrana geri don
         }
 
         if(U==1)
@@ -113,8 +106,6 @@ void car::keyPressEvent(QKeyEvent *event)
                      this->current_x = newX;
                      this->current_y = newY;
                      qDebug()<<current_x<<current_y;
-
-
             }
 
        }
@@ -144,8 +135,6 @@ void car::keyPressEvent(QKeyEvent *event)
                     setPos(newX,newY);
                     this->current_x = newX;
                     this->current_y = newY;
-                    qDebug()<<current_x<<current_y;
-
 
                    }
                    else
@@ -157,8 +146,6 @@ void car::keyPressEvent(QKeyEvent *event)
                        setPos(newX,newY);
                        this->current_x = newX;
                        this->current_y = newY;
-                       qDebug()<<current_x<<current_y;
-
                    }
 
                 }
@@ -227,14 +214,12 @@ bool car:: insideMap()
 int car::startPointPassed()
 {
     //if start point passed...
-    if (pos().x()>= 29&& pos().x()<69 && pos().y()>=304 &&pos().y()<344)
+    if (pos().x()>= -10 && pos().x()<110 && pos().y()>=304 &&pos().y()<344)
     {
         //increase startpoint passed integer value
         if(!sppassed)
         {                
             startPoint++;
-            //lastCheckPoint = 0;
-            qDebug()<<"startpoint: "<<startPoint;
             sppassed = true;
         }
 
@@ -246,6 +231,7 @@ int car::startPointPassed()
 
     if(crashed(this->decorArray)==true)
     {
+        //if(startPoint>che)
         startPoint-=1;
     }
     return startPoint;
@@ -271,20 +257,19 @@ int car::checkPoint_1_Passed()
         ch1passed = false;
     }
     //return new checkpoint1 passed integer value
-        if(between_1_2()==true ||between_2_start()==true)
-        {
             if(crashed(this->decorArray)==true)
             {
+                if(checkPoint1==startPoint)
+                {
+                //if()
                 checkPoint1-=1;
+                }
             }
-        }
     return checkPoint1;
-    //qDebug()<<"checkpoint1: "<<checkPoint1;
 }
 
 int car::checkPoint_2_Passed()
 {
-    qDebug()<<ch2passed<<!ch2passed;
      //if check point 2 passed...
     if ( current_x>=498 && current_x<538 &&current_y>332 && current_y<650) //TODO x de ekle
     {
@@ -301,16 +286,17 @@ int car::checkPoint_2_Passed()
         ch2passed = false;
     }
     //return checkpoint 2 passed integer value
-    if(between_2_start()==true)
-    {
+
         if(crashed(this->decorArray)==true)
         {
+            if(checkPoint2==checkPoint1 &&checkPoint2==startPoint)
+            {
             checkPoint2-=1;
+            checkPoint1-=1;
+            }
         }
-    }
 
     return checkPoint2;
-    qDebug()<<"checkpoint2: "<<checkPoint2;
 
 }
 
@@ -320,12 +306,6 @@ void car::roundsCompleted()
     checkPoint_1_Passed();
     checkPoint_2_Passed();
     startPointPassed();
-    qDebug()<<"startpoint: "<<startPoint;
-    qDebug()<<"cp1: "<<checkPoint1;
-    qDebug()<<"cp2: "<<checkPoint2;
-
-
-
   //if start point has been passed 3 times
   if(startPoint>=4)
   {
@@ -335,52 +315,14 @@ void car::roundsCompleted()
           //if check point 2 has been passed 3 times
           if(checkPoint2>=3)
           {
-              //if(lastCheckPoint == 0)
-              //{
                   // 3 rounds has been completed-> show game won screen
                   gameWon=new GameWonDialog();
                   gameWon->exec();
                   disconnect(plotTimer, SIGNAL(timeout()),this, SLOT(render()));
-              //}
+
           }
       }
   }
   //if 3 rounds has not been completed untill time out
 
 }
-
-bool car ::between_1_2()
-{
-    if(pos().x()>110 &&pos().x()<538 &&pos().y()>-24 &&pos().y()<650 )
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-
-}
-bool car:: between_start_1()
-{
-    if(pos().x()>29 && pos().x()<100 && pos().y()>-24 &&pos().y()< 344)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-}
-bool car:: between_2_start()
-{
-    if(pos().y()>304&&pos().y()<650 &&pos().x()>29&&pos().x()<538)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-}
-

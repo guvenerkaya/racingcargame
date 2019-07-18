@@ -44,9 +44,9 @@ private:
     int checkPoint_1_Passed();
     int startPointPassed();
     int checkPoint_2_Passed();
-    bool between_1_2();
-    bool between_start_1();
-    bool between_2_start();
+   // bool between_1_2();
+   // bool between_start_1();
+   // bool between_2_start();
 
 
 
