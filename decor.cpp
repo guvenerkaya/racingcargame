@@ -25,6 +25,12 @@ decor::decor(QGraphicsItem * parent,int png_nmbr): QGraphicsPixmapItem(parent)
     if(png_nmbr==7){
     this->pixmap = QPixmap(":/map_images/Soil_Tile.png");
     }
+    if(png_nmbr==8){
+    this->pixmap = QPixmap(":/map_images/grandstand.png");
+    }
+    if(png_nmbr==9){
+    this->pixmap = QPixmap(":/map_images/Finish.png");
+    }
 
     drawOrmanKanunlariFero();
 }

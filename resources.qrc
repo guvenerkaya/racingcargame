@@ -27,12 +27,21 @@
         <file>Soil_Tile.png</file>
         <file>izi.png</file>
         <file>map2sunum.png</file>
+        <file>Finish.png</file>
+        <file>map2window.png</file>
+        <file>map3window.png</file>
+        <file>map1window.png</file>
     </qresource>
     <qresource prefix="/soundEffects">
         <file>carSound.mp3</file>
         <file>themeSong.mp3</file>
+        <file>carcollided.mp3</file>
+        <file>Queen - We Are The Champions.mp3</file>
+        <file>Funny-game-over-sound.mp3</file>
     </qresource>
     <qresource prefix="/videoEffects">
         <file>Countdown_3-2.mp4</file>
+        <file>gamewon.gif</file>
+        <file>gameover.gif</file>
     </qresource>
 </RCC>

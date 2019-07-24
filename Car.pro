@@ -36,7 +36,8 @@ SOURCES += \
     road.cpp \
     health.cpp \
     gameover.cpp \
-    gamewondialog.cpp
+    gamewondialog.cpp \
+    timer.cpp
 
 HEADERS += \
         car.h \
@@ -47,7 +48,8 @@ HEADERS += \
     road.h \
     health.h \
     gameover.h \
-    gamewondialog.h
+    gamewondialog.h \
+    timer.h
 
 FORMS += \
         car.ui \

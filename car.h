@@ -8,27 +8,31 @@
 #include "health.h"
 #include "gameover.h"
 #include "gamewondialog.h"
+#include "timer.h"
+#include <QMediaPlayer>
 
 class car:public QObject,public QGraphicsPixmapItem
 {
     Q_OBJECT
+
+    //to calculate the correct angle for the car rotation we are storing the right( r)/left(l) click numbers starting with 0
     int l=0,r=0;
     QPixmap pixmap;
     QTimer * plotTimer;
     gameOver *gameOverDialog;
     GameWonDialog *gameWon;
     bool ch1passed = false, ch2passed = false, sppassed = false;
-    //int lastCheckPoint = 0;
+    QMediaPlayer * carcollide;
+
 public:
     Health *health;
-
+    Timer * leftTime;
     car(QGraphicsItem*parent =0, road roadArray[]=0, int decorArray[] = 0);
     void drawFerrari();
     void drawMercedes();
     void drawRedbull();
     void keyPressEvent(QKeyEvent*event);
     void keyReleaseEvent(QKeyEvent*event);
-    //float newX,newY;
     float current_x;
     float current_y;
     bool insideRoad(road roadArray[]);
@@ -36,25 +40,24 @@ public:
     road roadArray[15];
     int decorArray[30];
     bool insideMap();
+    bool stopmusic();
 
 private:
     int R,D,L,U;
+    //3 rounds completed
     void roundsCompleted();
+
+    //controle points, that the car should pass in order to complete 1 round
     int checkPoint1=0,checkPoint2=0,startPoint=0;
+
+    //checking if the car has passed by the controle points
     int checkPoint_1_Passed();
     int startPointPassed();
     int checkPoint_2_Passed();
-   // bool between_1_2();
-   // bool between_start_1();
-   // bool between_2_start();
-
-
 
 public slots:
     void render();
 
-signals:
-    void carIsDead();
 };
 
 #endif // CAR_H

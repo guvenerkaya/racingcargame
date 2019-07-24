@@ -15,6 +15,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->BackGroundLabel->setPixmap(QPixmap(":/window_images/background.png"));
 
     themeSound=new QMediaPlayer();
+    //play theme sound
     themeSound->setMedia(QUrl("qrc:/soundEffects/themeSong.mp3"));
     themeSound->play();
     show();
@@ -27,19 +28,22 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_select_car_clicked()
 {
+    //open car selection
     SelectGameObjectDialog SelectionWindow(this, Car);
         if(SelectionWindow.exec())
         {
+            //get the selection
             this->selectedCar = SelectionWindow.getSelected();
         }
-
 }
 
 void MainWindow::on_select_map_clicked()
 {
+    //open map selection
     SelectGameObjectDialog SelectionWindow(this, Map);
         if(SelectionWindow.exec())
         {
+            //get the selection
             this->selectedMap = SelectionWindow.getSelected();
         }
 
@@ -55,5 +59,6 @@ void MainWindow::on_start_game_clicked() //TODO
 
     //open the map scene with these selections
     map *startGame;
+    //pass the selection to the map
     startGame=new map(this->selectedCar, this->selectedMap);
 }

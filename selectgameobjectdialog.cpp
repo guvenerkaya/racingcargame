@@ -22,9 +22,9 @@ SelectGameObjectDialog::SelectGameObjectDialog(QWidget *parent,Selection s) :
             //if select map window is open
             case Map:
             //set labels as these pixmaps
-                ui->Decision_1->setPixmap(QPixmap(":/map_images/map2.png"));
-                ui->Decision_2->setPixmap(QPixmap(":/map_images/map2sunum.png"));
-                ui->Decision_3->setPixmap(QPixmap(":/map_images/map2.png"));
+                ui->Decision_1->setPixmap(QPixmap(":/map_images/map1window.png"));
+                ui->Decision_2->setPixmap(QPixmap(":/map_images/map2window.png"));
+                ui->Decision_3->setPixmap(QPixmap(":/map_images/map3window.png"));
                 break;
         }
 }
