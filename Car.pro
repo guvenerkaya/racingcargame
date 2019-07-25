@@ -52,10 +52,8 @@ HEADERS += \
     timer.h
 
 FORMS += \
-        car.ui \
     mainwindow.ui \
     selectgameobjectdialog.ui \
-    countdown.ui \
     gameover.ui \
     gamewondialog.ui
 
