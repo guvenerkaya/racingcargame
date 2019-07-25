@@ -15,8 +15,10 @@ class car:public QObject,public QGraphicsPixmapItem
 {
     Q_OBJECT
 
-    //to calculate the correct angle for the car rotation we are storing the right( r)/left(l) click numbers starting with 0
+    //to calculate the correct angle for the car rotation..
+    //we are storing the right( r)/left(l) click numbers starting with 0
     int l=0,r=0;
+
     QPixmap pixmap;
     QTimer * plotTimer;
     gameOver *gameOverDialog;
@@ -28,9 +30,6 @@ public:
     Health *health;
     Timer * leftTime;
     car(QGraphicsItem*parent =0, road roadArray[]=0, int decorArray[] = 0);
-    void drawFerrari();
-    void drawMercedes();
-    void drawRedbull();
     void keyPressEvent(QKeyEvent*event);
     void keyReleaseEvent(QKeyEvent*event);
     float current_x;
@@ -44,6 +43,7 @@ public:
 
 private:
     int R,D,L,U;
+
     //3 rounds completed
     void roundsCompleted();
 
