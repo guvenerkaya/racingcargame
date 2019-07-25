@@ -39,7 +39,6 @@ public:
     road roadArray[15];
     int decorArray[30];
     bool insideMap();
-    bool stopmusic();
 
 private:
     int R,D,L,U;
