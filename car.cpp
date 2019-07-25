@@ -67,8 +67,6 @@ void car::keyPressEvent(QKeyEvent *event)
         roundsCompleted();
         leftTime->getlefttime();
 
-       stopmusic();
-       qDebug()<<stopmusic();
 
         //checking whether 3 of the lives are gone or the time is up...
         if(this->health->getHealth() <= 0 || leftTime->getlefttime()==0.04)
@@ -91,7 +89,7 @@ void car::keyPressEvent(QKeyEvent *event)
             if(crashed(this->decorArray) == true)//man vergleicht die gegenwaertige Position vom Auto mit dem Objektposition
             {
                 //update lives
-                health->decreaseHealth();
+              health->decreaseHealth();
                 //set car position 49,324
                  setPos(49,324);//nach Anfangspunk zurückkehren falls crashed
             }
@@ -222,7 +220,7 @@ bool car:: crashed(int decorArray[]){
                &&x < decorArray[i]+30 &&y > decorArray[i+1]-30)
        {
            return true;
-           health->decreaseHealth();
+          // health->decreaseHealth();
        }
         i = i +2;
     }
@@ -239,20 +237,8 @@ bool car:: insideMap()
         return false;
     else
         return true;
+        //health->decreaseHealth();
 }
-
-bool car::stopmusic()
-{
-    if (health->getHealth() <= 0 || leftTime->getlefttime()==0.04)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-}
-
 
 int car::startPointPassed()
 {
