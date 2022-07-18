@@ -1,19 +1,20 @@
-Map Design 
+This is a car race game implemented in C++ from scratch.
 
-Drei verschiedene Rennstrecken wurde eingebaut.Auf Scene wurden drei verschiedene Bilder als Hintergrund eingestellt
-und darauf wurden viele unterschiedliche Objekten z.B Wasseranteile,Baeume, Zuschauer usw. mit dem addItem() hinzugefügt.
+The project is a completed in collaboration with Cem Özbay and Ekin Yılmaz. Feel free to contact me (erkayaguven@gmail.com) for anything related to the code. 
 
-Jede Rennstrecke teilt sich an Rechtecke mit unterschiedlichen großen und wurde an einem roadArray speichern,
-damit wir die Grenzen bestimmen können.
-Mit der InsideRoad Funktion wurde getestet, ob das Auto auf der Rennstrecke ist, sonst das Auto faehrt langsamer.
+##### Map Design 
 
-Collision
+Three different racetracks are implemented. Three different images are added to the scene as background images and different objects such as wetlands, trees, audience etc. are integrated via the addItem() method.
 
-İnsideMap Funktion: es wurde getestet, ob das Auto auf dem Gamewindow ist, sonst das Auto geht zurück zum Anfangpunkt.
+Every racetrack is divided into rectangles of different sizes and they are stored in a road array to define the borders.
+The car goes slowly if it is not on the racetrack which is tested by the insideRoad function
 
-Viele unterschiedliche Collisionpunkte wurden bestimmt und an dem decorArray gespeichert. 
-Mit QDebug Funktion wurden die richtige Positionen den Objekten auf dem Debugfenster gelesen.
-crashed Funktion: man vergleicht das current position vom Auto mit dem Objektposition, wenn die beide das selbe Position haben, 
-dann bekommen wir ein collision und  das Auto geht zurück zum Anfangpunkt.
+
+##### Collision
+
+The insideMap function checks if the car is within the game window and if it is not, then it gets back to the start point.
+
+Different collision points are hardcoded and stored in the decorArray.
+When the car is in the same position with an object, then it's a collision and the car gets back to the start point.
 
 
